@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Descubra e explore o universo de Rick and Morty - Encontre seus personagens favoritos e salve-os para sempre">
+    <title>Explorador Rick & Morty</title>
+    <link rel="stylesheet" href="api.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-rocket"></i>
+                    <h1>Explorador Rick & Morty</h1>
+                </div>
+                <nav class="nav">
+                    <button class="nav-toggle" aria-label="Abrir menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <ul class="nav-menu">
+                        <li><a href="#characters" class="nav-link active" data-tab="characters">
+                            <i class="fas fa-users"></i> Personagens
+                        </a></li>
+                        <li><a href="#favorites" class="nav-link" data-tab="favorites">
+                            <i class="fas fa-heart"></i> Meus Favoritos
+                            <span class="favorites-count">0</span>
+                        </a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <section class="search-section">
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search search-icon"></i>
+                        <input 
+                            type="text" 
+                            id="searchInput" 
+                            placeholder="Digite o nome do personagem..."
+                            class="search-input"
+                        >
+                        <button class="clear-search" id="clearSearch" aria-label="Limpar busca">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="filter-container">
+                        <select id="statusFilter" class="filter-select">
+                            <option value="">Qualquer status</option>
+                            <option value="alive">Vivo</option>
+                            <option value="dead">Morto</option>
+                            <option value="unknown">Desconhecido</option>
+                        </select>
+                        <select id="speciesFilter" class="filter-select">
+                            <option value="">Qualquer espécie</option>
+                            <option value="human">Humano</option>
+                            <option value="alien">Alienígena</option>
+                            <option value="robot">Robô</option>
+                            <option value="animal">Animal</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <div class="loading" id="loading">
+                <div class="loading-spinner"></div>
+                <p>Procurando personagens </p>
+            </div>
+
+            <section id="characters" class="content-section active">
+                <div class="section-header">
+                    <h2>Personagens</h2>
+                    <div class="pagination-info">
+                        <span id="charactersCount">0</span> personagens encontrados
+                    </div>
+                </div>
+                
+                <div class="characters-grid" id="charactersGrid">
+                </div>
+
+                <div class="pagination" id="pagination">
+                    <button class="pagination-btn" id="prevPage" disabled>
+                        <i class="fas fa-chevron-left"></i> Anterior
+                    </button>
+                    <div class="page-info">
+                        Página <span id="currentPage">1</span> de <span id="totalPages">1</span>
+                    </div>
+                    <button class="pagination-btn" id="nextPage">
+                        Próximo <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </section>
+
+            <section id="favorites" class="content-section">
+                <div class="section-header">
+                    <h2>Meus Favoritos</h2>
+                    <div class="pagination-info">
+                        <span id="favoritesCount">0</span> personagens salvos
+                    </div>
+                </div>
+                
+                <div class="characters-grid" id="favoritesGrid">
+                </div>
+
+                <div class="empty-favorites" id="emptyFavorites">
+                    <i class="fas fa-heart-broken"></i>
+                    <h3>Nenhum favorito ainda</h3>
+                    <p>Adicione personagens aos seus favoritos para encontrá-los aqui</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div class="modal" id="characterModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose" aria-label="Fechar">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="character-detail" id="characterDetail">
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer">
+    </div>
+
+    <script src="api.js"></script>
+</body>
+</html>
